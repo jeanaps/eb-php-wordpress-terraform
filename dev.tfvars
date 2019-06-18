@@ -1,0 +1,6 @@
+aws_region      = "[redacted]"
+aws_access_key  = "[redacted]"
+aws_secret_key  = "[redacted]"
+project_name    = "[redacted]"
+rds_username    = "[redacted]"
+rds_password    = "[redacted]"
