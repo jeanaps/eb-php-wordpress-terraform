@@ -10,9 +10,19 @@ These instructions were tested with WordPress 5.2.1
 
 https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html
 
-## Configure AWS CLI
+## Configure AWS CLI 
+
+https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html
 
         ~$ aws configure
+        AWS Access Key ID [*******************]: 
+        AWS Secret Access Key [*******************]: 
+        Default region name [us-east-2]: 
+        Default output format [text]: 
+        
+### Install Terraform
+        
+https://learn.hashicorp.com/terraform/getting-started/install
 
 ### Set up your project directory
 
