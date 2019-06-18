@@ -4,21 +4,7 @@ Use [Terraform](https://www.terraform.io/) to create an Elastic Beanstalk enviro
 
 NOTE: Amazon EFS is not available in all AWS regions. Check the [Region Table](https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/) to see if your region is supported.
 
-These instructions were tested with WordPress 5.2.1
-
-### Install the AWS CLI
-
-https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html
-
-## Configure AWS CLI 
-
-https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html
-
-        ~$ aws configure
-        AWS Access Key ID [*******************]: 
-        AWS Secret Access Key [*******************]: 
-        Default region name [us-east-2]: 
-        Default output format [text]: 
+These instructions were tested with WordPress **5.2.1**
         
 ### Install Terraform
         
@@ -26,15 +12,21 @@ https://learn.hashicorp.com/terraform/getting-started/install
 
 ### Set up your project directory
 
-NOTE: This automation currently requires an existing VPC with 1 or More Subnets.
+1. Edit `dev.tfvars` to specify your AWS Access Key and Secret, and other custom variables.
+
+https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html
 
 ### Networking configuration
+
+*NOTE: This automation assumes an existing VPC with 1 or More Subnets.*
+
 Modify the configuration files `dev.config` and `efs-create.config` with the IDs of your [default VPC and subnets](https://console.aws.amazon.com/vpc/home#subnets:filter=default), and [your public IP address](https://www.google.com/search?q=what+is+my+ip).
 
  - `dev.config` restricts access to your environment to your IP address to protect it during the WordPress installation process. Replace the placeholder IP address near the top of the file with your public IP address.
  - `efs-create.config` creates an EFS file system and mount points in each Availability Zone / subnet in your VPC. Identify your default VPC and subnet IDs in the [VPC console](https://console.aws.amazon.com/vpc/home#subnets:filter=default). If you have not used the console before, use the region selector to select the same region that you chose for your environment.
 
 #### WARNING: EFS lifecycle
+
 Any resources that you create with configuration files are tied to the lifecycle of your environment. They are lost if you terminate your environment or remove the configuration file.
 Use this configuration file to create an Amazon EFS file system in a development environment. When you no longer need the environment and terminate it, the file system is cleaned up for you.
 For production environments, consider creating the file system using Amazon EFS directly.
